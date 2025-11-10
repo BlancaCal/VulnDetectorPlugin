@@ -1,61 +1,98 @@
-# 🛡️ VulnerabilityCodeDetector | Support and Community Repository
+# Vulnerability Code Detector
 
-**The central hub for the VulnerabilityCodeDetector plugin for Visual Studio Code.**
+Detect vulnerabilities in source code using AI models directly from Visual Studio Code.
 
-This repository is dedicated to providing **user support** and facilitating **community collaboration** for the continuous improvement of the **VulnerabilityCodeDetector** plugin.
+## Features
+- Source code analysis for security vulnerabilities.
+- Support for multiple languages (Python, Java, C, JavaScript, Terraform, etc.).
+- Detailed results with explanation, vulnerability type, CWE, CVSS, and recommended solution.
+- Integrated commands in the editor's toolbar.
 
----
+## Installation
+1. Install the extension from the VS Code Marketplace.
+2. Open Visual Studio Code and go to the Extensions section.
+3. Search for "VulnerabilityDetectorPlugin" and install it.
 
-## 🌟 About the Plugin
+## Get Started
+1. **Create the environmental variables** `OPENROUTER_API_KEY` and/or `OPENAI_API_KEY`.
+- To create the Open AI API KEY follow this documentation: https://platform.openai.com/api-keys
+- On the other hand, for Open Router use: https://www.kerlig.com/help/integrations/open-router/get-api-key
+Once, you have created your API keys configure them to be used by the plugin.
+```
+$env:OPENAI_API_KEY="my_openai_key"
+$env:OPENROUTER_API_KEY="my_openrouter_key"
+```
+```
+export OPENAI_API_KEY="my_openai_key"
+export OPENROUTER_API_KEY="my_openrouter_key"
+```
 
-**VulnerabilityCodeDetector** is a Visual Studio Code extension designed to **enhance your code security**. It analyzes your project in real-time, identifying and alerting you to insecure code patterns and known dependencies that could introduce vulnerabilities.
+2. **Configure the platform and model** you want to use.
+- Click the button "Change Model Configuration" and select which platform you want (OpenAI or OpenRouter).
+![Configure Button](images/image_conf.png)
+![select platform](images/image_plat.png)
+- Once selected, indicate the tag model to use. You can visit https://openrouter.ai/models to search all OpenRouter models and https://platform.openai.com/docs/models for OpenAI.
+![select model](images/image_model.png)
+3. Now you can start to use the tool!
 
-### Main Developer
+## Usage
 
-* **BlancaCal**
+### Step-by-step Usage
 
----
+1. **Open a source code file** in the VS Code editor.
+2. **Analyze the code**:
+   - Click the "Analyze Code for Vulnerabilities" button in the editor title bar or run the command from the command palette (`Ctrl+Shift+P` > `Analyze Code for Vulnerabilities`).
 
-## 📥 Plugin Installation
+   ![Button](images/image.png)
+3. **Review the Vulnerability Report**:
+   - After analysis, a new "Vulnerability Report" window opens on the right.
+   - The report includes: vulnerable code fragment, vulnerability type, CWE, CVSS, explanation, and recommended solution.
+   - Vulnerable code is highlighted in orange in the source file.
+   ![Results](images/image_result.png)
 
-The plugin is available for free and can be installed directly from the Visual Studio Marketplace.
+   - If no vulnerabilities are found, this is indicated in the Report along an explanation. This Report was generated using GPT-4.1 model and may vary when using other models.
+   ![Report no vuln](images/image_noVuln.png)
 
-1.  Open Visual Studio Code.
-2.  Go to the **Extensions** view (`Ctrl+Shift+X` or `Cmd+Shift+X`).
-3.  Search for **"VulnerabilityCodeDetector"**.
-4.  Click **Install**.
+   Another example of a "no vulnerabilities found" report generated with a different model.
+   ![Other Report No vuln](images/image_other.png)
 
-🔗 **Direct Link to the Marketplace:**
-[https://marketplace.visualstudio.com/items?itemName=BlancaCal.vulnDetector](https://marketplace.visualstudio.com/items?itemName=BlancaCal.vulnDetector)
+4. **Navigate vulnerabilities**:
+   - Click the vulnerability title in the report to jump directly to the corresponding line in your code.
+5. **Change AI model**:
+   - Use the "Change Model Configuration" command or button to select a different provider or model.
+   ![Modify conf](images/image_modify.png)
 
----
+**Tips:**
+- Free models are available on OpenRouter (e.g., `openai/gpt-oss-20b:free`, `google/gemini-2.0-flash-exp:free`).
+- You can re-analyze the file after making code changes.
+- The tool was tested and evaluated using OpenAI’s gpt-4.1-2025-04-14 model, other models may produce inaccurate results.
 
-## 💬 Repository Usage (Support and Inquiries)
+### Interpreting Results
 
-We use the GitHub **Issues** section to manage all support requests and improvement ideas.
+- **Vulnerable Fragment**: The exact code lines detected as vulnerable.
+- **Vulnerability Type**: Classification (e.g., SQL Injection, XSS).
+- **CWE/CVSS**: Industry-standard identifiers and severity scores.
+- **Explanation**: Why the code is vulnerable.
+- **Solution**: Recommended fix or mitigation.
 
-| Purpose | Recommended Action |
-| :--- | :--- |
-| **🚨 Report a Bug/Fault** | Open a **New Issue** with the `bug` label. **Clearly describe the step-by-step process to reproduce** the fault, including your operating system, model used and VS Code version. |
-| **💡 Suggest an Improvement/Feature** | Open a **New Issue** with the `enhancement` label. Explain the desired functionality and its use case. |
-| **❓ Ask a General Question** | Open a **New Issue** with the `question` label. |
+### Troubleshooting
 
----
+- If no vulnerabilities are found, try with different models or review your code for edge cases.
+- If the API key is missing or invalid, check your environment variable setup.
 
-## 🤝 Contributions (Developers)
+## Available Commands
+- `analyzeCode`: Analyzes the open code for vulnerabilities.
+- `changeProviderModel`: Changes the AI model used for analysis.
 
-We greatly appreciate any contributions to the project! If you wish to help improve **VulnerabilityCodeDetector**, please follow our contribution guide:
+## Requirements
+- Visual Studio Code >= 1.96.0
+- Node.js >= 20.x for local development
 
-1.  **Fork** this repository to your personal GitHub account.
-2.  **Clone** your local copy.
-3.  **Create a Branch** for your changes: `git checkout -b feature/my-new-feature` (or `fix/fix-bug-x`).
-4.  **Make your changes** and ensure clean, documented code.
-5.  **Create a Pull Request (PR):** Target your branch to the `main` branch of this repository.
+## Contributing
+Contributions are welcome. Please open an issue or pull request on GitHub https://github.com/BlancaCal/VulnDetectorPlugin.
 
-We will review your PR as soon as possible. Thank you for supporting code security!
+## License
+MIT License. See the LICENSE file for details.
 
----
-
-## 📄 License
-
-MIT License
+## Support
+For questions or issues, open an issue in the repository https://github.com/BlancaCal/VulnDetectorPlugin.
