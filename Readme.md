@@ -58,5 +58,4 @@ We will review your PR as soon as possible. Thank you for supporting code securi
 
 ## 📄 License
 
-This project is released under the [Name of the License, e.g., MIT License]. Please refer to the `LICENSE` file in the plugin's repository for more details.
-MIT License
+This project is released under the MIT License. Please refer to the `LICENSE` file in the plugin's repository for more details.
