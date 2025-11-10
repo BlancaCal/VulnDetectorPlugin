@@ -11,7 +11,7 @@ Detect vulnerabilities in source code using AI models directly from Visual Studi
 ## Installation
 1. Install the extension from the VS Code Marketplace.
 2. Open Visual Studio Code and go to the Extensions section.
-3. Search for "VulnerabilityDetectorPlugin" and install it.
+3. Search for "VulnerabilityCodeDetector" and install it.
 
 ## Get Started
 1. **Create the environmental variables** `OPENROUTER_API_KEY` and/or `OPENAI_API_KEY`.
